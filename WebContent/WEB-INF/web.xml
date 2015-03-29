@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>jee-infodebugstuff</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <display-name>System Property Servlet</display-name>
+    <servlet-name>SystemPropertyServlet</servlet-name>
+    <servlet-class>infodebug.SystemPropertyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SystemPropertyServlet</servlet-name>
+    <url-pattern>/systemproperties</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>JNDI Dump Servlet</display-name>
+    <servlet-name>JNDIDumpServlet</servlet-name>
+    <servlet-class>infodebug.JNDIDumpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JNDIDumpServlet</servlet-name>
+    <url-pattern>/jndidump</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>JDBC Meta Data Servlet</display-name>
+    <servlet-name>JDBCMetaDataServlet</servlet-name>
+    <servlet-class>infodebug.JDBCMetaDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JDBCMetaDataServlet</servlet-name>
+    <url-pattern>/jdbcmetadata</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>Request Info Servlet</display-name>
+    <servlet-name>RequestInfoServlet</servlet-name>
+    <servlet-class>infodebug.RequestInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestInfoServlet</servlet-name>
+    <url-pattern>/requestinfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>Light Thread Dump Servlet</display-name>
+    <servlet-name>LightThreadDumpServlet</servlet-name>
+    <servlet-class>infodebug.LightThreadDumpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LightThreadDumpServlet</servlet-name>
+    <url-pattern>/lightthreaddump</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>Thread Dump Servlet</display-name>
+    <servlet-name>ThreadDumpServlet</servlet-name>
+    <servlet-class>infodebug.ThreadDumpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThreadDumpServlet</servlet-name>
+    <url-pattern>/threaddump</url-pattern>
+  </servlet-mapping>
+</web-app>
