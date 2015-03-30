@@ -21,15 +21,20 @@ public class LightThreadDumpServlet extends HttpServlet {
 		out.println("<h1>Light Thread Dump</h1>");
 		out.println("<em>Warning: This Thread dump is only based on java.lang.Thread.getAllStackTraces(). It does therefore not contain any Java locking information, that's why we call it \"light\". If your JVM is capable of java.lang.management-based thread dumping, please try if <a href=\"threaddump\">Thread Dump</a> works for you.</em>");
 
-		Map<Thread, StackTraceElement[]> alldumpsMap = Thread.getAllStackTraces();
-		for(Thread thread : alldumpsMap.keySet()) {
-			out.println("<h3>" + thread.getName() + (thread.isInterrupted() ? "interrupted" : "") + (thread.isDaemon() ? " daemon" : "") + " prio=" + thread.getPriority() + " id=" + thread.getId() + " " + thread.getState() + "</h3>");
-			out.println("<table>");
-			for(StackTraceElement ste : alldumpsMap.get(thread)) {
-				out.println("<tr><td nowrap=\"nowrap\" valign=\"top\">at " + text2html(ste.toString()) + "</td></tr>");
+		try {
+			Map<Thread, StackTraceElement[]> alldumpsMap = Thread.getAllStackTraces();
+			for(Thread thread : alldumpsMap.keySet()) {
+				out.println("<h3>" + thread.getName() + (thread.isInterrupted() ? "interrupted" : "") + (thread.isDaemon() ? " daemon" : "") + " prio=" + thread.getPriority() + " id=" + thread.getId() + " " + thread.getState() + "</h3>");
+				out.println("<table>");
+				for(StackTraceElement ste : alldumpsMap.get(thread)) {
+					out.println("<tr><td nowrap=\"nowrap\" valign=\"top\">at " + text2html(ste.toString()) + "</td></tr>");
+				}
+				out.println("</table>");
+				out.println("<br />");
 			}
-			out.println("</table>");
-			out.println("<br />");
+		} catch (Exception ex) {
+			out.println("<p>Sorry, thread dump via Thread.getAllStackTraces() failed due to: <em>" + text2html(ex.getClass().getName() + ": " + ex.getMessage()) + "</em></p>");
+			ex.printStackTrace();
 		}
 
 		out.println("</body></html>");
